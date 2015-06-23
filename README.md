@@ -1,2 +1,4 @@
 # Cloudbot
-This is a bot area for Plug.dj, Please ReadMe before using these files. Thanks!
+
+This is a new bot for plug.dj and is still underconstruction.
+Stay tuned! (: 
