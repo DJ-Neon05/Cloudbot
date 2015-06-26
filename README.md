@@ -20,7 +20,7 @@ How to function it? scroll down [HERE]()
 ---
 ## What can this bot do? ##
 
-#### [NOTE]: More Commands are yet to be updated soon. Stay tuned! (:
+####- [NOTE]: More Commands are yet to be updated soon. Stay tuned! (:
 
 --
 ####- Interval announcements
