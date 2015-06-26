@@ -26,7 +26,7 @@ How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Cloudbot/blo
 ####- Interval announcements
 
 - If you have a facebook group link you would like to share, or any message you would like to regularly announce, the bot can be configured to say a certain message every X number of songs.
-    - You can add your own announcement keyword [HERE]() 
+    - You can add your own announcement keyword [HERE](https://github.com/DJ-Neon05/Cloudbot/blob/master/Packet/Cloudbot.js#L47) 
 
 --
 ###- Greets the Joiners
