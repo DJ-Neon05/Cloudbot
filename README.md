@@ -20,9 +20,10 @@ How to function it? scroll down [HERE]()
 ---
 ## What can this bot do? ##
 
-####- Admins of the bot can also use the moderators commands
-      Helpful for moderating the room.
+####- Admins of the bot can also use the moderators commands.
+#### Helpful for moderating the room.
       While using `.commands` you can also instruct bot to show it's commands to other users. By simply Mentioning the user.
+
 --
 ####- Interval announcements
 
