@@ -20,11 +20,11 @@ How to function it? scroll down [HERE]()
 ---
 ## What can this bot do? ##
 
-- Admins of the bot can also use the moderators commands
+####- Admins of the bot can also use the moderators commands
       - Helpful for moderating the room.
   - While using `.commands` you can also instruct bot to show it's commands to other users. By simply Mentioning the user.
 --
-###- Interval announcements
+####- Interval announcements
 
 - If you have a facebook group link you would like to share, or any message you would like to regularly announce, the bot can be configured to say a certain message every X number of songs.
     - You can add your own announcement keyword [HERE](https://github.com/DJ-Neon05/Fun-Bot/blob/master/Bot/Fun.js#L79) 
