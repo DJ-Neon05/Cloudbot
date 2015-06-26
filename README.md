@@ -13,13 +13,13 @@ If there happen to be a bug or problem with the bot you can report issue [HERE](
 ##### Updated: Jun 25/2015
 
 You can customize this bot script once you fork it.
-How to function it? scroll down [HERE]()
+How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Cloudbot/blob/master/README.md#installing-bot)
 
 ---
 ## What can this bot do? ##
 
-##### [NOTE]: CloudBot commands can be found [HERE](http://chillout-lounge.webs.com/cloudbot), more are to be updated soon!
-stay tuned! :D 
+##### [NOTE]: CloudBot commands can be found [HERE](http://chillout-lounge.webs.com/cloudbot), 
+##### Stay tuned for more updates on commands! :D 
 
 
 --
