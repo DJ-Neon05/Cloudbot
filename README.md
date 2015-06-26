@@ -9,8 +9,6 @@ Permission to change anything on this script, You can always contact the author 
 [PlugStation](http://chillout-lounge.webs.com/)
 If there happen to be a bug or problem with the bot you can report issue [HERE](https://github.com/DJ-Neon05/Cloudbot/issues). I'll work on it ASAP! Thanks :)
 
-CloudBot commands can be found [HERE](http://chillout-lounge.webs.com/cloudbot)
-
 ##### CloudBot version: 1.0
 ##### Updated: Jun 25/2015
 
@@ -20,7 +18,9 @@ How to function it? scroll down [HERE]()
 ---
 ## What can this bot do? ##
 
-##### [NOTE]: More Commands are yet to be updated soon. Stay tuned! (:
+##### [NOTE]: CloudBot commands can be found [HERE](http://chillout-lounge.webs.com/cloudbot), more are to be updated soon!
+stay tuned! :D 
+
 
 --
 ####- Interval announcements
