@@ -23,13 +23,13 @@ How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Cloudbot/blo
 
 
 --
-####- Interval announcements
+#### Interval announcements
 
 - If you have a facebook group link you would like to share, or any message you would like to regularly announce, the bot can be configured to say a certain message every X number of songs.
     - You can add your own announcement keyword [HERE](https://github.com/DJ-Neon05/Cloudbot/blob/master/Packet/Cloudbot.js#L47) 
 
 --
-###- Greets the Joiners
+#### Greets the Joiners
 - If a user joins the lobby. Bot can randomly send out greeting message to that user.
 - Random keywords for greetings
 `example`
@@ -41,7 +41,7 @@ How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Cloudbot/blo
 ```
 
 --
-###- Helps put up link
+#### Helps put up link
 - Usually random users can't have the opportunity to link out URLs into chat.
 - Issue fix. bot can now help none staff users to link out random URLs
 - An example is given below `example 1`
