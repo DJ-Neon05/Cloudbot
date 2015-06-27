@@ -41,7 +41,8 @@ var version = "1.0";    // Bot's Version
 var joined = new Date().getTime(); // Date and Time
 var announcementTick = 60/*sec*/* 10/*minute*/; // length of bot annoucement.
 var lastAnnouncement = 0;
-var API = API;          // functions APIs
+var API = {};          // functions APIs
+var API.on = {};
 
 var cloudAdmins = ["3852632"];  // Bot's Admins ID
 var announcements = [""];   // Random announcements
