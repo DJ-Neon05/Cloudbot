@@ -343,7 +343,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
     }
     
     // You can change these settings.
-    (function(){$('body').css('background-image', 'url( http://i.imgur.com/M0Op8Cg.jpg)');$('#playback .background').hide();$('#playback-container').css('border', '5px solid #4D4D4D');}());  
+    (function(){$('#playback .background').hide();$('#playback-container').css('border', '5px solid #4D4D4D');}());  
     reply(cloudBot+" version "+version+" is now running!"); // sends chat when bot is active
     console.log("cloudBot version "+version);   // friendly message on terminal
     
