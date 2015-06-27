@@ -35,14 +35,13 @@
 
 if(window.location.hostname === "plug.dj"){
 
-var logged = {}; // Main soource that runs the bot
+var logged = true; // Main soource that runs the bot
 var cloudBot = API.getUser().username; // Bot's name
 var version = "1.0";    // Bot's Version
+var API = API;          // functions APIs
 var joined = new Date().getTime(); // Date and Time
 var announcementTick = 60/*sec*/* 10/*minute*/; // length of bot annoucement.
 var lastAnnouncement = 0;
-var API = {};          // functions APIs
-var API.on = {};
 
 var cloudAdmins = ["3852632"];  // Bot's Admins ID
 var announcements = [""];   // Random announcements
