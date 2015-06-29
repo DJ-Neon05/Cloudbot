@@ -9,8 +9,8 @@ Permission to change anything on this script, You can always contact the author 
 [PlugStation](http://chillout-lounge.webs.com/)
 If there happen to be a bug or problem with the bot you can report issue [HERE](https://github.com/DJ-Neon05/Cloudbot/issues). I'll work on it ASAP! Thanks :)
 
-##### CloudBot version: 1.0
-##### Updated: Jun 25/2015
+##### CloudBot version: 1.7
+##### Updated: Jun 29/2015
 
 You can customize this bot script once you fork it.
 How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Cloudbot/blob/master/README.md#installing-bot)
@@ -61,7 +61,7 @@ How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Cloudbot/blo
 ## Installing Bot
 Copy and paste this code to your bookmarks bar and rename it to whatever you like.
 ```Javascript
-javascript:(function(){$.getScript('https://goo.gl/OjOpPK');}());
+javascript:(function(){$.getScript('https://cdn.rawgit.com/DJ-Neon05/Cloudbot/master/Packet/Cloudbot.js');}());
 ```
 You can function your own bot script after forking this script.
 ```JavaScript
