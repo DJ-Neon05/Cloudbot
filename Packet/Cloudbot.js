@@ -37,48 +37,44 @@ if(window.location.hostname === "plug.dj"){
 
 var logged = true; // Main soource that runs the bot
 var cloudBot = API.getUser().username; // Bot's name
-var version = "1.0";    // Bot's Version
+var version = "1.7";    // Bot's Version
 var API = API;          // functions APIs
 var joined = new Date().getTime(); // Date and Time
 var announcementTick = 60/*sec*/* 10/*minute*/; // length of bot annoucement.
 var lastAnnouncement = 0;
+var SongLimit = 60/*sec*/* 7/*minute*/;
+
+var swearFilter = true;
 
 var cloudAdmins = ["3852632"];  // Bot's Admins ID
 var announcements = [""];   // Random announcements
 
+
+var swearWords = ["fuck","shit","bitch","cunt","twat","fag","queer","dumbass"]; // swear array
+
 window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not to be changed
     
-    API.on(API.CHAT, commands);
-    API.on(API.USER_JOIN, userJoin);
     
-    function reply(msg) { // replace sendChat to reply
-        setTimeout(function () {
+    function reply(msg){ // replace sendChat to reply
         API.sendChat(msg);
-        }, 150); // delay messages
     }
     
-    /*function activate(){
-	//Re-activates the bot
-	reply(cloudBot+" Reactivated");
-	return logged = true;
-    }*/
-    
-    function stop(){
-	//stops the bot
-	reply(cloudBot+" Now killing myself");
-	API.off(API.CHAT);
-    /*setTimeout(function () {
-    API.on(API.CHAT, commands);
-        }, 450);*/
-	return logged = false;
-    }
-    
-    function sendAnnouncement() {   // Recalls when bot randomly announce in chat
+    function sendAnnouncement(){   // Recalls when bot randomly announce in chat
         if (lastAnnouncement++ >= announcements.length - 1) {
             lastAnnouncement = 0;
         }
         reply(announcements[lastAnnouncement]);
     }
+    
+    (function activate(){//Re-activates the bot
+	reply(cloudBot+" Reactivated");
+	return logged = true;
+    });
+    
+    (function stop(){//stops the bot
+	reply(cloudBot+version+" Now killing myself");
+	return logged = false;
+    });
     
     function getUserID(username) {
         var users = API.getUsers();
@@ -88,11 +84,17 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
         return false;
     }
     
-    function userJoin(data){
+    API.on(API.USER_JOIN, function (data){
         var joinMsg = ["@user has joined!", "welcome, @user!", "Hey there, @user!", "Glad you came by, @user"];
         var join = Math.floor(Math.random() * joinMsg.length);
         reply(joinMsg[join].replace("user", data.un.username));
-    }
+    });
+    
+    API.on(API.ADVANCE, function (data){
+        if(API.getMedia().length == SongLimit){
+            API.moderateForceSkip();
+        }
+    });
     
     API.on(API.CHAT, function (data) { // Chat Function #1, Users and Mod can use.
         if (data.message.indexOf('.') === 0) {
@@ -109,30 +111,48 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                 case "command":
                 case "commands":
                     var link = ' '+"http://chillout-lounge.webs.com/cloudbot";
-                    reply(from+" My commands can be found here:"+link);
+                    reply(from+" My commands can be found here: "+link);
                     break;  // main commands list, can also be provided with link
                     
                 case "rules":
                 case "rules":
-                    reply(from+" My rules has not been set yet! :(");
-                    break;  // current room's rules.
+                    reply(from+" Rules can be found at discription list!");
+                    break;  // returns current room's rules.
                     
                 case "theme":
                 case "theme":
-                    reply(from+" My themes settings has not been set yet! :(");
-                    break;  // Theme information
+                    reply(from+" We allow anything but related music(s) like: ForsenCancer/troll/NSFW, above all that keep your song under 7 minutes!");
+                    break;  // returns Theme information
                     
-                case "add":
+                case "help":
+                    reply(from+" This might be what you're looking for: http://i.imgur.com/S9c5YEJ.jpg");
+                   break; // Returns help informentions
+                    
+                /*case "add":
                     API.moderateAddDJ(fromid);
-                    break;  // add current sender to dj
+                    break;  // add current sender to dj 
                     
                 case "remove":
-                    API.moderateRemoveDJ(fromid);
-                    break;  // remove the current sender from dj
+                    API.moderateRemoveDJ(data.un);
+                    break;  // remove the current sender from dj */
                     
                 case "votes":
                     reply("Users vote:  :+1: "+ API.getScore().positive + " | :-1: " + API.getScore().negative + " | :purple_heart: " + API.getScore().grabs);
                     break; // recalls current votes in lobby
+                    
+                case "author":
+                case "creator":
+                    var host = API.getHost().username;
+                    reply(host +", is my Originator.");
+                    break;
+                    
+                case "songlink":
+                    if(API.getUser().role <= 1,2,3,4,5 || API.getUsers(from, cloudAdmins)){
+                    reply(from+" " + "http://youtu.be/" + API.getMedia().cid);
+                    }else{
+                    reply("You need to be a resident+ to do this command.");
+                    }
+                    break;
                     
                 case "link":  // non-staff users in-use for linking websites
                     if (typeof command[1] == "undefined") {
@@ -140,8 +160,8 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     } else if (command[1].toLowerCase().indexOf("plug.dj") === -1 && command[1].toLowerCase().indexOf("bug.dj") === -1 && command[1].toLowerCase().indexOf("porn") === -1 && command[1].toLowerCase().indexOf("sex") === -1) {
                     reply("["+from+"] http://"+ command[1]);
                     } else {
-                    var IdiotMsg = ["Dude wtf is wrong with you? @idiot, Search that up yourself!", "Sorry i cannot search that up! @idiot", "@idiot You think i'd be that stupid enough to search that up?", "What are you an idiot? @idiot"];
-                    var r = Math.floor(Math.random() * IdiotMsg.length);
+                        var IdiotMsg = ["Dude wtf is wrong with you? @idiot, Search that up yourself!", "Sorry i cannot search that up! @idiot", "@idiot You think i'd be that stupid enough to search that up?", "What are you an idiot? @idiot"];
+                        var r = Math.floor(Math.random() * IdiotMsg.length);
                     reply(IdiotMsg[r].replace("idiot", from));
                     }
                     break;
@@ -152,20 +172,12 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     } else if (command[1].toLowerCase().indexOf("xxx") === -1 && command[1].toLowerCase().indexOf("porn") === -1 && command[1].toLowerCase().indexOf("sex") === -1) {
                         reply(from+" http://www.urbandictionary.com/define.php?term=" + command[1]);
                     } else {
-                    var idiotMsg = ["Dude, wtf is wrong with you? Search that up yourself.", "What do i look like a porn bot?", "What are you an idiot?"];
+                        var idiotMsg = ["Dude, wtf is wrong with you? Search that up yourself.", "What do i look like a porn bot?", "What are you an idiot?"];
                         reply(from+" "+ idiotMsg[Math.floor(Math.random() * idiotMsg.length)]);
                     }
                     break;
+                    
                 
-                /*    
-                
-                FUN COMMANDS COMMING SOON! :p
-                
-                case "":
-                
-                break;
-                
-                */
                 }
             }
         });
@@ -185,17 +197,18 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                 case "test":
                     reply(from+" Test is complete bot is running fine.");
                     break;  // recalls bot status
-                
-                case "mystatus":
-                    var say = "";
-                    var userid = API.getUser();
-                    say = say + "Username: "+from;
-                    say = say + " | voted: "+ userid.vote;
-                    say = say + " | level: "+ userid.level;
-                    say = say + " | grab: "+ userid.grab;
-                    say = say + " | language: "+ userid.language;
-                    say = say + " | Waitlist: "+ API.getWaitListPosition(userid);
-                    reply(say);
+                    
+                case "ping":
+                    reply(from + " Pong!");
+                    break;  // Pong array
+                    
+                case "marco":
+                    reply(from + " Polo!");
+                    break;  // Polo array
+                    
+                    
+                case "":
+                    
                     break;
                     
                 case "skip":
@@ -244,18 +257,6 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     }, 100);
                     break;  // Allows bot to leave Dj booth
                     
-                case "ping":
-                    reply(from+" Pong!");
-                    break;  // Pong call
-                    
-                case "pong":
-                    reply(from+" Ping!");
-                    break;  // ping call
-                    
-                case "marco":
-                    reply(from+" Polo!");
-                    break;  // Polo call
-                    
                 case "unlock":
                     API.moderateLockWaitList(false);
                     break; 
@@ -264,11 +265,17 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     API.moderateLockWaitList(true);
                     break;
                     
-                case "version":
-                    reply("cloudBot version "+version);
-                    break;  //  Recalls bot version on chat
+                case "myinfo":
+                    var say = "";
+                    say = say + from;
+                    say = say + " | voted: "+ API.getUser(fromid).vote;
+                    say = say + " | level: "+ API.getUser(fromid).level;
+                    say = say + " | language: "+ API.getUser(fromid).language;
+                    say = say + " | Waitlist: "+ API.getWaitListPosition(fromid);
+                    reply(say);
+                    break;  // recalls user's status in current room.
                     
-                case "status":
+                case "infos":
                     var response = "";
                     var currentTime = new Date().getTime();
                     var minutes = Math.floor((currentTime - joined) / 60000);
@@ -276,19 +283,33 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     while (minutes > 60) {
                         minutes = minutes - 60;
                         hours++;
-                    }   // bot's status, this will be changed soon.
+                    }   // bot's status.
                         hours == 0 ? 
                         response = "Running for " + minutes + "m " : 
                         response = "Running for " + hours + "h " + minutes + "m" ;
                         response = response + " | Name: " + cloudBot;
                         response = response + " | version: " + version;
-                        response = response + " | Language: " + API.getUser().language;
-                        response = response + " | Level: " + API.getUser().level;
-                        response = response + " | Grab: " + API.getUser().grab;
-                        response = response + " | role: " + API.getUser().role;
-                        response = response + " | votes: " + API.getUser().vote;
+                        response = response + " | Current Users: "+ API.getUsers().length;
                         response = response + " | Current Waitlist: " + API.getWaitList().length;
+                        response = response + " | Swear filter: "+swearFilter;
                     reply(response);
+                    break;
+                    
+                case "swearfilter":
+                case "sf":
+                    swearFilter ? reply("Swearing filter is enabled") : reply("Swearing filter is disabled");
+                    break;    
+                    
+                case "tsf":
+                    if(API.getUser().role <= 2,3,4,5 || API.getUsers(from, cloudAdmins)){
+                    if(swearFilter){
+                        swearFilter = false;
+                        reply("Bot will no longer filter swearing.");
+                    }else{
+                        swearFilter = true;
+                        reply("Bot will now filter swearing.");
+                        }
+                    }
                     break;
                 
             }}
@@ -314,38 +335,20 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
         }
     });
     
-    function commands(data) { // Chat Function #4, Staff managers and Admins only.
-        if (data.message.indexOf('.') === 0) {
-            var msg = data.message, user = '@'+data.un, userID = data.uid;
-            var command = msg.substring(1).split(' ');
-            if (typeof command[2] != "undefined") {
-                for (var i = 2; i < command.length; i++) {
-                    command[1] = command[1] + ' ' + command[i];
-                }
+    API.on(API.CHAT, function(data){
+        var msg = data.message.toLowerCase();
+        var chatID = data.cid;
+        for(var i = 0; i < swearWords.length; i++){
+            if(msg.indexOf(swearWords[i].toLowerCase()) > -1 && swearFilter){
+                API.moderateDeleteChat(chatID);
             }
-            if (API.getUser().role <= 5 || API.getUsers(userID, cloudAdmins)) {
-                switch (command[0].toLowerCase()) {
-                    
-                /*case "reload":
-                    activate();
-                setTimeout(function () {
-                    API.on(API.CHAT);
-                    }, 450);
-                    break;*/
-                case "die":
-                    stop();
-                    break;
-            }}
-            else{
-                reply(user+" You need to be a Manager+ to say this command!");
-            }   // recalls when a non-staff uses staff commands on bot
         }
-    }
+    });
     
     // You can change these settings.
     (function(){$('#playback .background').hide();$('#playback-container').css('border', '5px solid #4D4D4D');}());  
     reply(cloudBot+" version "+version+" is now running!"); // sends chat when bot is active
-    console.log("cloudBot version "+version);   // friendly message on terminal
+    console.log("cloudBot version "+version+" Connected!");   // friendly message on terminal
     
 }else{
 	alert("This script only functions at http://plug.dj/"); // this is not to be changed
