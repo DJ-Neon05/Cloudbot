@@ -3,7 +3,7 @@ CloudBot
 
 A Bot script which is used for [Plug.dj](http://plug.dj/communities/)
 
-I don't mind you guys using this script just long as nothing is to be changed on it.
+I don't mind you guys using this script just long as it doesn't get me into trouble due to copyright.
 
 Permission to change anything on this script, You can always contact the author at
 [PlugStation](http://chillout-lounge.webs.com/)
