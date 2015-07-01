@@ -52,7 +52,7 @@ Features
   - Global bans[N/A]
   - Stats (usercount, channelcount, RAM usage) [N/A]
 
-[note] [N/A] defines bot doesn't have this features yet.
+###### [note] [N/A] defines bot doesn't have this features yet.
 ---
 ## Installing Bot
 Copy and paste this code to your bookmarks bar and rename it to whatever you like.
