@@ -87,7 +87,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
     API.on(API.USER_JOIN, function (data){
         var joinMsg = ["@user has joined!", "welcome, @user!", "Hey there, @user!", "Glad you came by, @user"];
         var join = Math.floor(Math.random() * joinMsg.length);
-        reply(joinMsg[join].replace("user", data.un.username));
+        reply(joinMsg[join].replace("user", data.username));
     });
     
     API.on(API.ADVANCE, function (data){
