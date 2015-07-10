@@ -370,10 +370,10 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     if(API.getUser().role <= 2,3,4,5 || API.getUsers(from, cloudAdmins)){
                     if(blockedFilter){
                         blockedFilter = false;
-                        reply("Bot will no longer filter swearing.");
+                        reply("Bot will no longer filter BlockList.");
                     }else{
                         blockedFilter = true;
-                        reply("Bot will now filter swearing.");
+                        reply("Bot will now filter BlockList.");
                         }
                     }
                     break;
