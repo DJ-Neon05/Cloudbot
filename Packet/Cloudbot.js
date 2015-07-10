@@ -49,7 +49,27 @@ var swearFilter = true;
 var cloudAdmins = ["3852632"];  // Bot's Admins ID
 var announcements = [""];   // Random announcements
 
-var blockList = ["S.P.Y","wrecking ball","miley cyrus","justin bieber"];
+var blockedSongs = [
+"Rick Roll",
+"GANGNAM",
+"The Fox",
+"The Fox [Official music video HD]",
+"10 hour",
+"Trololo",
+"#SELFIE (Official Music Video)",
+"Heyayayay",
+"Rap God"
+];
+ 
+// Keywords of blocked artist.
+var blockedArtists = [
+"Rick Astley",
+"Miley Cyrus",
+"Eduard Khil",
+"Justin Bieber",
+"Lil wayne",
+"Rebecca Black"
+];
 
 var swearWords = ["fuck","shit","bitch","cunt","twat","fag","queer","dumbass"]; // swear array
 
@@ -104,9 +124,16 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
         reply(joinMsg[join].replace("user", data.username));
     });
     
-    API.on(API.ADVANCE, function (data){
-        if(API.getMedia().title === blockList.length){
-            API.moderateForceSkip();
+    API.on(API.ADVANCE, function(){
+ 
+        var title = API.getMedia().title;
+        var author = API.getMedia().author;
+        for (var i = 0; i < blockedSongs.length; i++) {
+            if (title.indexOf(blockedSongs[i]) != -1 || author.indexOf(blockedArtists[i]) != -1) {
+                API.moderateForceSkip();
+                API.sendChat("I Skipped: " + title + " because it is blocked.");
+                return;
+            }
         }
     });
     
