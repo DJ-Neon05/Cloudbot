@@ -49,6 +49,7 @@ var swearFilter = true;
 var cloudAdmins = ["3852632"];  // Bot's Admins ID
 var announcements = [""];   // Random announcements
 
+var blockList = ["S.P.Y","wrecking ball","miley cyrus","justin bieber"];
 
 var swearWords = ["fuck","shit","bitch","cunt","twat","fag","queer","dumbass"]; // swear array
 
@@ -58,7 +59,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
     function reply(msg){ // replace sendChat to reply
         API.sendChat(msg);
     }
-    
+
     function sendAnnouncement(){   // Recalls when bot randomly announce in chat
         if (lastAnnouncement++ >= announcements.length - 1) {
             lastAnnouncement = 0;
@@ -84,6 +85,19 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
         return false;
     }
     
+    API.getWaitListPosition = function(id){
+        if(typeof id === 'undefined' || id === null){
+            id = API.getUser().id;
+        }
+        var waitlist = API.getWaitList();
+        for(var i = 0; i < waitlist.length; i++){
+            if(waitlist[i].id === id){
+                return i;
+            }
+        }
+        return -1;
+    };
+    
     API.on(API.USER_JOIN, function (data){
         var joinMsg = ["@user has joined!", "welcome, @user!", "Hey there, @user!", "Glad you came by, @user"];
         var join = Math.floor(Math.random() * joinMsg.length);
@@ -91,7 +105,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
     });
     
     API.on(API.ADVANCE, function (data){
-        if(API.getMedia().length == SongLimit){
+        if(API.getMedia().title * blockList.length){
             API.moderateForceSkip();
         }
     });
@@ -111,7 +125,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                 case "command":
                 case "commands":
                     var link = ' '+"http://chillout-lounge.webs.com/cloudbot";
-                    reply(from+" My commands can be found here: "+link);
+                    reply(from+" My commands can be found here: "+ link);
                     break;  // main commands list, can also be provided with link
                     
                 case "rules":
@@ -128,13 +142,13 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     reply(from+" This might be what you're looking for: http://i.imgur.com/S9c5YEJ.jpg");
                    break; // Returns help informentions
                     
-                /*case "add":
+                case "add":
                     API.moderateAddDJ(fromid);
                     break;  // add current sender to dj 
                     
                 case "remove":
                     API.moderateRemoveDJ(data.un);
-                    break;  // remove the current sender from dj */
+                    break;  // remove the current sender from dj 
                     
                 case "votes":
                     reply("Users vote:  :+1: "+ API.getScore().positive + " | :-1: " + API.getScore().negative + " | :purple_heart: " + API.getScore().grabs);
