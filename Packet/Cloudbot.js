@@ -45,6 +45,8 @@ var lastAnnouncement = 0;
 var SongLimit = 60/*sec*/* 7/*minute*/;
 
 var swearFilter = true;
+var blockedFilter = true;
+
 
 var cloudAdmins = ["3852632"];  // Bot's Admins ID
 var announcements = [""];   // Random announcements
@@ -129,7 +131,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
         var title = API.getMedia().title;
         var author = API.getMedia().author;
         for (var i = 0; i < blockedSongs.length; i++) {
-            if (title.indexOf(blockedSongs[i]) != -1 || author.indexOf(blockedArtists[i]) != -1) {
+            if (title.indexOf(blockedSongs[i]) != -1 || author.indexOf(blockedArtists[i]) != -1 && blockedFilter) {
                 API.moderateForceSkip();
                 API.sendChat("I Skipped: " + title + " because it is blocked.");
                 return;
@@ -337,7 +339,8 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                         response = response + " | version: " + version;
                         response = response + " | Current Users: "+ API.getUsers().length;
                         response = response + " | Current Waitlist: " + API.getWaitList().length;
-                        response = response + " | Swear filter: "+swearFilter;
+                        response = response + " | Swear Filter: "+swearFilter;
+                        response = response + " | OP Filter: "+blockedFilter;
                     reply(response);
                     break;
                     
@@ -353,6 +356,23 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                         reply("Bot will no longer filter swearing.");
                     }else{
                         swearFilter = true;
+                        reply("Bot will now filter swearing.");
+                        }
+                    }
+                    break;
+                    
+                case "blockedfilter":
+                case "bf":
+                    blockedFilter ? reply("BlockList filter is enabled") : reply("BlockList filter is disabled");
+                    break;    
+                    
+                case "tbf":
+                    if(API.getUser().role <= 2,3,4,5 || API.getUsers(from, cloudAdmins)){
+                    if(blockedFilter){
+                        blockedFilter = false;
+                        reply("Bot will no longer filter swearing.");
+                    }else{
+                        blockedFilter = true;
                         reply("Bot will now filter swearing.");
                         }
                     }
