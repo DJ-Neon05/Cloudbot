@@ -31,9 +31,9 @@ Features
   - JavaScript
     - Give's out bot current script's link.
   - Permissions
-    - Tiered ranks (Bot's Admin > Co-Host > Moderator > Leader > Member > Guest > Anonymous)
-  - Chat filters (based on regular expressions)
-  - Lock/unlock playlist to allow pre-addition by next dj (configurable with permissions)
+    - Rankings (BotAdmins > Host > Manager > bouncer > Dj > Users)
+  - Chat filters
+  - Lock/unlock playlist to allow pre-addition by next dj
 - Save/load playlists per user account
 - Polls
 - Voteskip (can be disabled by a channel moderator)
