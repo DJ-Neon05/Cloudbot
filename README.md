@@ -21,27 +21,26 @@ Features
 - Standalone web/socket.io server [suggestions]
 - Optional SSL support for socket.io and the account API
 - Synchronized playback from the following sources:
-  - YouTube (individual videos + playlists) 
+  - YouTube
   - Soundcloud
-  - Raw video/audio files (via JWPlayer)
-- Embedding of the following sources:
-  - Custom `<iframe>` and `<object>` embeds
-- Channel customization
-  - HTML Message of the Day
-  - JavaScript
-    - Give's out bot current script's link.
+This can be found [here](https://github.com/DJ-Neon05/Cloudbot/blob/master/Packet/Cloudbot.js#L195)
+- Chat Messages
+  - Message of the Day
+    - [Auto messages](https://github.com/DJ-Neon05/Cloudbot/blob/master/Packet/Cloudbot.js#L50)
+    - Passes message time can be [Modify](https://github.com/DJ-Neon05/Cloudbot/blob/master/Packet/Cloudbot.js#L43)
   - Permissions
     - Rankings (BotAdmins > Host > Manager > bouncer > Dj > Users)
   - Chat filters
+    - [Swear words](https://github.com/DJ-Neon05/Cloudbot/blob/master/Packet/Cloudbot.js#L74)
   - Lock/unlock playlist to allow pre-addition by next dj
-- Save/load playlists per user account
-- Polls
-- Voteskip (can be disabled by a channel moderator)
-- Auto-AFK status (can be configured per-channel)
+- Save/load status per user account [N/A]
+  - points
+  - level
+  - numbers of songPlayed and durations of DJs on deck 
+- Voteskip (can be disabled by moderator) [N/A]
 - Leader
   - Grants control of playback to a user (Allows user to be back on waitlist) [N/A]
   - Can also be used to grant temporary mod-like powers to a user [N/A]
-- Channel state saves/loads on restart 
 - Account management
   - Profile avatar and text [N/A]
 - Moderation
