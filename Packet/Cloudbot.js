@@ -137,6 +137,11 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
         }
     });
     
+    API.on(API.ADVANCE, function(){
+        API.sendChat("Skipping song because it has exceeded the song limit (" + (SongLimit / 60) + " minutes.)");
+        API.moderateForceSkip();
+    });
+    
     API.on(API.CHAT, function (data) { // Chat Function #1, Users and Mod can use.
         if (data.message.indexOf('.') === 0) {
             var msg = data.message, from = '@'+data.un, fromid = data.uid;
@@ -355,7 +360,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                 
             }}
             else{
-                reply(from+" You need to be a staff to say this command!");
+                reply(from+" You need to be a staff member to say this command!");
             }   // recalls when a non-staff uses staff commands on bot
         }
     });
@@ -371,7 +376,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                 if (getUserID(from).role >= (roleCode-1) && roleCode && targetUser)
                     API.moderateSetRole(targetUser.id, roleCode);
             }else{
-                reply(from+" This command cannot be made!");
+                reply(from+" This command maybe restricted for your level!");
             }  
         }
     });
