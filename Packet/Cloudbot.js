@@ -105,7 +105,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
     });
     
     API.on(API.ADVANCE, function (data){
-        if(API.getMedia().title * blockList.length){
+        if(API.getMedia().title === blockList.length){
             API.moderateForceSkip();
         }
     });
