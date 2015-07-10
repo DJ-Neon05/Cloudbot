@@ -9,7 +9,7 @@ Permission to change anything on this script, You can always contact the author 
 [PlugStation](http://chillout-lounge.webs.com/)
 If there happen to be a bug or problem with the bot you can report issue [HERE](https://github.com/DJ-Neon05/Cloudbot/issues). I'll work on it ASAP! Thanks :)
 
-##### CloudBot version: 1.10
+##### CloudBot version: 0.1.15
 ##### Updated: June 29, 2015
 
 You can customize this bot script once you fork it.
