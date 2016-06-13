@@ -315,7 +315,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     reply(say);
                     break;  // recalls user's status in current room.
                     
-                case "infos":
+                case "status":
                     var response = "";
                     var currentTime = new Date().getTime();
                     var minutes = Math.floor((currentTime - joined) / 60000);
