@@ -34,7 +34,7 @@
 
 var logged = true; // Main soource that runs the bot
 var cloudBot = API.getUser().username; // Bot's name
-var version = "1.0.11";    // Bot's Version
+var version = "1.0.15";    // Bot's Version
 var API = API;          // functions APIs
 var joined = new Date().getTime(); // Date and Time
 var announcementTick = 60/*sec*/* 10/*minute*/; // length of bot annoucement.
