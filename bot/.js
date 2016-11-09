@@ -246,7 +246,7 @@ window.setInterval(sendAnnouncement, 1000 * announcementTick);  // This is not t
                     break;  // Polo array
                     
                 case "version":
-                    reply(verison);
+                    reply(version);
                     break;
                     
                 case "skip":
